@@ -5,18 +5,11 @@
 *
 */
 
-#include <iostream>
-#include <iomanip>
-#include <string>
-#include <cctype>
-
 using namespace std;
-//#include "ItemType.h"
 #include "UnsortedType.h"
 
 UnsortedType list1, list2, uni;
 
-void menu();
 void menu2();
 void menulist();
 void searchlist(char& input);
@@ -25,7 +18,6 @@ void deleteitem(char& input);
 void forceEmpty(char& input);
 void printlist(char& input);
 void Unionize();
-void Unionmenu();
 
 int main()
 {
@@ -38,42 +30,14 @@ int main()
 	}
 }
 
-/*void menu()
-{
-	char input = 'a';
-	while (input != '3')
-	{
-		cout << "You may save up to two lists. Press 1 to alter the first, or 2 to alter the second.\n";
-		cout << "You may also choose to view the Unionized Lists' menu by pressing U.\n";
-		cout << "If you would like to exit, press 3.\n";
-
-		cin >> input;
-		cout << endl;
-		if (input == '1')
-		{
-			menu2(input);
-			break;
-		}
-		else if (input == '2')
-		{
-			menu2(input);
-			break;
-		}
-		else if (input == 'U' || input == 'u')
-		{
-			Unionmenu();
-		}
-		else
-		{
-			system("cls");
-			cout << "That was not a correct input.\n";
-		}
-	}
-}*/
-
+/***********************
+*
+*Preconditions - Requires that the user is able to input things, and that menulist() is loaded correctly.
+*Postconditions - Outputs the correct selection from the user input.
+*
+***********************/
 void menu2()
 {
-	//menulist();
 	char menuitem, input;
 	bool exit = false;
 	while (exit == false)
@@ -116,6 +80,7 @@ void menu2()
 		else if (menuitem == 'O' || menuitem == 'o')
 		{
 			cout << "Which list would you like to output?\n";
+			cout << "Press 1 to output list 1, 2 for list 2, or U for the union list.\n";
 			cin >> input;
 			printlist(input);
 		}
@@ -130,6 +95,12 @@ void menu2()
 	}
 }
 
+/***********************
+*
+*Preconditions - Requires std is being used.
+*Postconditions - Outputs the correct options for the user.
+*
+***********************/
 void menulist()
 {
 	cout << "You may choose any of the following items by pressing the corresponding letter.\n";
@@ -142,6 +113,12 @@ void menulist()
 	cout << "To exit press E\n";
 }
 
+/***********************
+*
+*Preconditions - Requires an input from the user to select a list to search in.
+*Postconditions - Outputs whether the item searched for is in the list selected or not.
+*
+***********************/
 void searchlist(char& input)
 {
 	ItemType item;
@@ -163,13 +140,19 @@ void searchlist(char& input)
 		cout << search << " was found.\n";
 	};
 		break;
-	default: cout << "There was an error.\n";
+	default: cout << "Your item could not be found.\n";
 		break;
 	}
 	cout << "Press any key and then enter to return to the menu.\n";
 	cin >> exit;
 }
 
+/***********************
+*
+*Preconditions - Requires an input for the list that is being added to.
+*Postconditions - Inserts an item into the list that was selected.
+*
+***********************/
 void insertitem(char& input)
 {
 	ItemType item;
@@ -189,6 +172,12 @@ void insertitem(char& input)
 	}
 }
 
+/***********************
+*
+*Preconditions - Requires an input from the user to know what list is being deleted from.
+*Postconditions - Deletes the item that the user selected from the list that was selected.
+*
+***********************/
 void deleteitem(char& input)
 {
 	ItemType item;
@@ -208,6 +197,12 @@ void deleteitem(char& input)
 	}
 }
 
+/***********************
+*
+*Preconditions - Requires an input from the user to know which list is being emptied.
+*Postconditions - Empties the selected list.
+*
+***********************/
 void forceEmpty(char& input)
 {
 	switch (input)
@@ -221,6 +216,12 @@ void forceEmpty(char& input)
 	}
 }
 
+/***********************
+*
+*Preconditions - Requires an input to know which list is being printed.
+*Postconditions - Prints the selected list.
+*
+***********************/
 void printlist(char& input)
 {
 	system("cls");
@@ -238,10 +239,16 @@ void printlist(char& input)
 	default: cout << "There was an error.\n";
 		break;
 	}
-	cout << "Press any letter to exit.\n";
+	cout << "Press any letter, followed by an enter, to exit.\n";
 	cin >> end;
 }
 
+/***********************
+*
+*Preconditions - None.
+*Postconditions - Unionizes the lists.
+*
+***********************/
 void Unionize()
 {
 	char exit;

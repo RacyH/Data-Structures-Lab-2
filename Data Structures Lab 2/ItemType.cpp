@@ -11,11 +11,12 @@ ItemType::ItemType() {
 	item = '0';
 };
 
-RelationType ItemType::ComparedTo(ItemType inputItem)
+bool ItemType::ComparedTo(ItemType inputItem)
 {
-	if (item != inputItem.Get()) {
-		return NotEqual;
+	if (item == inputItem.Get()) {
+		return true;
 	}
-	else
-		return EQUAL;
+	else {
+		return false;
+	}
 }

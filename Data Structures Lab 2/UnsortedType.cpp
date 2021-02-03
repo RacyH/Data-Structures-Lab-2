@@ -155,6 +155,10 @@ void UnsortedType::Union(UnsortedType& first, UnsortedType& second, UnsortedType
 			uni.InsertItem(item);
 			first.currentPosition = first.currentPosition->next;
 		}
+		else
+		{
+			first.currentPosition = first.currentPosition->next;
+		}
 	}
 	while (second.currentPosition != NULL)
 	{
@@ -162,6 +166,10 @@ void UnsortedType::Union(UnsortedType& first, UnsortedType& second, UnsortedType
 		if ((uni.SearchItem(item)) != true)
 		{
 			uni.InsertItem(item);
+			second.currentPosition = second.currentPosition->next;
+		}
+		else
+		{
 			second.currentPosition = second.currentPosition->next;
 		}
 	}
