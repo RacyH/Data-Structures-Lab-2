@@ -22,26 +22,26 @@ UnsortedType::~UnsortedType()
 	MakeEmpty();
 }
 
-bool UnsortedType::SearchItem(ItemType item)
+node *UnsortedType::SearchItem(ItemType item)
 {
 	temporary = frontpointer;
 
 	while (temporary != NULL) {
 		if (temporary->data.ComparedTo(item) == EQUAL) 
 		{
-			return true;
+			return temporary;
 		}
 		else 
 		{
 			temporary = temporary->next;
 		}
 	}
-	return false;
+	return NULL;
 }
 
 void UnsortedType::InsertItem(ItemType item)
 {
-	nodePtr n = new node;
+	node* n = new node;
 	n->next = NULL;
 	n->data = item;
 
@@ -69,7 +69,7 @@ void UnsortedType::InsertItem(ItemType item)
 
 void UnsortedType::DeleteItem(ItemType del)
 {
-	nodePtr delpointer = nullptr;
+	node* delpointer = nullptr;
 	temporary = frontpointer;
 	currentPosition = frontpointer;
 
@@ -113,7 +113,7 @@ ItemType UnsortedType::GetNextItem()
 void UnsortedType::MakeEmpty()
 {
 	temporary = frontpointer;
-	nodePtr trailer = NULL;
+	node* trailer = NULL;
 
 	while (temporary != NULL) {
 		trailer = temporary;
@@ -146,11 +146,13 @@ void UnsortedType::Union(UnsortedType& first, UnsortedType& second, UnsortedType
 	ItemType item;
 	first.ResetList();
 	second.ResetList();
+	uni.MakeEmpty();
 
+	cout << "Adding Items.\n";
 	while (first.currentPosition != NULL)
 	{
 		item = first.currentPosition->data;
-		if ((uni.SearchItem(item)) != true)
+		if (uni.SearchItem(item) == NULL)
 		{
 			uni.InsertItem(item);
 			first.currentPosition = first.currentPosition->next;
@@ -160,10 +162,11 @@ void UnsortedType::Union(UnsortedType& first, UnsortedType& second, UnsortedType
 			first.currentPosition = first.currentPosition->next;
 		}
 	}
+	cout << "...\n"; //This was for debugging, and it makes the computer look like it's actually working.
 	while (second.currentPosition != NULL)
 	{
 		item = second.currentPosition->data;
-		if ((uni.SearchItem(item)) != true)
+		if (uni.SearchItem(item) == NULL)
 		{
 			uni.InsertItem(item);
 			second.currentPosition = second.currentPosition->next;

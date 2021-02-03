@@ -28,6 +28,12 @@ int main()
 		cout << "Are you sure you would like to exit?\nPress E to exit.\n";
 		cin >> verify;
 	}
+
+	//Deallocating memory in the lists.
+	list1.MakeEmpty();
+	list2.MakeEmpty();
+	uni.MakeEmpty();
+
 }
 
 /***********************
@@ -88,10 +94,6 @@ void menu2()
 		{
 			Unionize();
 		}
-		else
-		{
-			cout << "Invlaid option. Try again.\n";
-		}
 	}
 }
 
@@ -130,12 +132,12 @@ void searchlist(char& input)
 	
 	switch (input)
 	{
-	case '1': if (list1.SearchItem(item) == true)
+	case '1': list1.SearchItem(item);
 	{
 		cout << search << " was found.\n";
 	};
 		break;
-	case '2': if (list2.SearchItem(item) == true)
+	case '2': list2.SearchItem(item);
 	{
 		cout << search << " was found.\n";
 	};
@@ -167,7 +169,7 @@ void insertitem(char& input)
 		break;
 	case '2': list2.InsertItem(item);
 		break;
-	default: cout << "There was an error.\n";
+	default:
 		break;
 	}
 }
@@ -211,7 +213,7 @@ void forceEmpty(char& input)
 		break;
 	case '2': list2.MakeEmpty();
 		break;
-	default: cout << "There was an error.\n";
+	default:
 		break;
 	}
 }

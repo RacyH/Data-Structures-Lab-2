@@ -14,6 +14,14 @@ using namespace std;
 
 const int MAX_ITEMS = 100;
 
+enum RelationType
+{
+	LESS,
+	GREATER, //only included greater because of the requirements, however, I don't see this as being necessary for the way that I approached this program build
+	//to note, that I also stayed within the requirements
+	EQUAL
+};
+
 class ItemType
 {
 public:
@@ -32,7 +40,7 @@ public:
 *Postconditions - Compares the item inputted to the items in the list to see if it returns as true or false.
 *
 ***********************/
-	bool ComparedTo(ItemType inputItem);
+	RelationType ComparedTo(ItemType inputItem);
 
 	/***********************
 *
@@ -52,7 +60,7 @@ public:
 
 private:
 
-	string item;
+	string item; //changed this to string so that the program could accept any variable type. can change back to int if needed
 };
 
 

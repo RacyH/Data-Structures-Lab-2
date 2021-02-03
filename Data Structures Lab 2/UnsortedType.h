@@ -10,20 +10,23 @@
 
 #include "ItemType.h"
 
+struct node {
+	ItemType data;
+	node* next;
+};
+
 class UnsortedType
 {
 private:
 
-	typedef struct node {
-		ItemType data; //come back to this
-		node* next;
-	}*nodePtr;
-
 	int length;
-	nodePtr currentPosition;
-	nodePtr frontpointer;
-	nodePtr temporary;
+	node* currentPosition;
+	node* frontpointer;
+	node* temporary;
+
 public:
+
+
 
 	/***********************
 *
@@ -43,11 +46,11 @@ public:
 
 	/***********************
 *
-*Preconditions - Requires an item input to search for.
-*Postconditions - Returns true if the item was found, and false if it was not.
+*Preconditions - Given a value to search for and the object has been created.
+*Postconditions - A pointer to the location is returned or NULL pointer is return if no such item exists.
 *
 ***********************/
-	bool SearchItem(ItemType item);
+	node *SearchItem(ItemType item);
 
 	/***********************
 *
